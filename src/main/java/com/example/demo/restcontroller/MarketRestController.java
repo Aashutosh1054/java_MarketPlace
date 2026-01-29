@@ -8,6 +8,10 @@ import org.yaml.snakeyaml.error.Mark;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @RequestMapping("/market/1.0")
@@ -40,6 +44,16 @@ public class MarketRestController {
    public Market addNewEquity(@RequestBody Market m){
 
        return marketService.saveEquity(m);
+   }
+
+   @PutMapping("/equities/{id}")
+   public Market updateEquity(@PathVariable long id, @RequestBody Market m){
+       return marketService.updateEquity(id, m);
+   }
+
+   @DeleteMapping("/equities/{id}")
+   public void deleteEquityById(@PathVariable long id){
+       marketService.deleteEquityById(id);
    }
 //
 //    @PutMapping("/equities/{id}")

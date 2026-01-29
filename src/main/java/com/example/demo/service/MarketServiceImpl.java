@@ -4,7 +4,10 @@ import com.example.demo.entity.MarketEntity;
 import com.example.demo.model.Market;
 import com.example.demo.repository.MarketJPARepository;
 import com.example.demo.repository.MarketRepoImpl;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -53,5 +56,26 @@ public class MarketServiceImpl implements MarketService {
         me.setPrice(saveEquity.price);
         MarketEntity savedEntity = repository.save(me);
         return toModel(savedEntity);
+    }
+
+    @Override
+    public Market updateEquity(long id, Market market) {
+        // TODO Auto-generated method stub
+        //if(repository.existsById(id))
+
+        MarketEntity marketEntity = repository.findById(id).orElseThrow(null);
+        marketEntity.setEquity(market.equity);
+        marketEntity.setPrice(market.price);
+        MarketEntity updatedEntity = repository.save(marketEntity);
+        return toModel(updatedEntity);
+
+    }
+
+    @Override   
+    public void deleteEquityById(long id) {
+        if(!repository.existsById(id)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Equity Not found. ");
+        }
+        repository.deleteById(id);
     }
 }

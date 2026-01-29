@@ -5,14 +5,24 @@ GET http://localhost:8080/market/1.0/hello
 GET http://localhost:8080/market/1.0/equities
 
 ### Get equity by ID
-GET http://localhost:8080/market/1.0/equities/5
+GET http://localhost:8080/market/1.0/equities/2
 
 ### Add new equity
 POST http://localhost:8080/market/1.0/equities
 Content-Type: application/json
 
 {
-    "id": 89,
-    "equity": "Reliance Corp",
-    "price": 1500.75
+    "id": 0,
+    "equity": "ICICI Group",
+    "price": 20000
+}
+
+### Update equity by ID
+PUT http://localhost:8080/market/1.0/equities/2
+Content-Type: application/json
+
+{
+    "id": 2,
+    "equity": "Bank of Pune Group",
+    "price": 25000
 }
