@@ -1,0 +1,18 @@
+### Welcome endpoint
+GET http://localhost:8080/market/1.0/hello
+
+### Get all equities
+GET http://localhost:8080/market/1.0/equities
+
+### Get equity by ID
+GET http://localhost:8080/market/1.0/equities/5
+
+### Add new equity
+POST http://localhost:8080/market/1.0/equities
+Content-Type: application/json
+
+{
+    "id": 89,
+    "equity": "Reliance Corp",
+    "price": 1500.75
+}
